@@ -3,7 +3,22 @@
 @tailwind components;
 @tailwind utilities;
 
- 
+:root {
+  --lines-count: 3;
+  --line-height: 20px;
+  --element-height: calc(var(--lines-count) * var(--line-height));
+}
+
+p.desc {
+  padding: 0;                              /* <------ optional */
+  height: var(--element-height);           /* <------ optional */
+  text-overflow: ellipsis;                 /* <------ required */
+  line-height: var(--line-height);         /* <------ optional */
+  overflow: hidden;                        /* <------ required */
+  display: -webkit-box;                    /* <------ required */
+  -webkit-line-clamp: var(--lines-count);  /* <------ required */
+  -webkit-box-orient: vertical;            /* <------ required */
+}
 .flexcenter {
   @apply flex justify-center items-center
 }

@@ -35,7 +35,7 @@ const ProductsGrid = ({
     <div className="my-12">
       <h2 className=" font-bold text-3xl my-6 ">{title} </h2>
       <div className=" grid grid-cols-1 gap-6   md:grid-cols-2 lg:grid-cols-3 ">
-        {items.concat(items).map((e, i) => (
+        {items.map((e, i) => (
           <m.div
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -71,7 +71,7 @@ const ProductsGrid = ({
                               <CarouselItem key={el.id}>
                                 <Image
                                   alt={e.description}
-                                  className="object-cover max-h-[450px] rounded-xl !w-full "
+                                  className="object-cover max-h-[80dvh] rounded-xl !w-full "
                                   src={el.url}
                                   height={50}
                                   width={100}
@@ -149,6 +149,7 @@ const ProductsGrid = ({
                       damping: 20,
                     }}
                     initial={{ opacity: 0, x: 100 }}
+                    className="desc"
                   >
                     {e.description}
                   </m.p>

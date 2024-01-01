@@ -85,6 +85,7 @@ const Footer = () => {
 
               delay:i*.3
             }}
+            viewport={{once: true}}
             className="flexcenter py-7 cursor-pointer rounded-2xl backdrop-blur-md 
             hover:translate-x-1 duration-75 hover:-translate-y-1 hover:shadow-2xl gap-4"
           >
