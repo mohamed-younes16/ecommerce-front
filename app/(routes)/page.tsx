@@ -4,17 +4,21 @@ import Heading from "@/components/Heading";
 import ProductsGrid from "@/components/ProductsGrid";
 import Link from "next/link";
 
-export const revalidate = 3600;
-
+export const metadata = {
+  title: 'E-commerce Store',
+  description: 'Storeapp',
+ 
+}
 export default async function Home() {
   const billBoards: billBoard[] = await getBillBoards();
   const filteredBillboards = billBoards.filter((e) => e.categories.length > 0);
   const targetbillBoard: billBoard =
     filteredBillboards[Math.floor(Math.random() * filteredBillboards.length)];
   const products = await getAllProducts({ isFeatured: true });
-  console.log(products);
+
   return (
     <div className="min-h-screen">
+
       <div className=" max-md:h-[200px] !bg-opacity-40 dark:bg-zinc-600 bg-zinc-300 max-w-[95rem] overflow-hidden relative mx-auto rounded-xl h-[500px]">
         <Link
         style={{color:targetbillBoard.labelColor}}

@@ -1,11 +1,16 @@
 import { getProduct } from "@/actions";
 import ProductCarousel from "@/components/ProductCarousel";
-import { Button } from "@/components/ui/button";
+
 import { formatedPrice } from "@/utils";
-import { ShoppingBag } from "lucide-react";
+
 import React from "react";
 import AddProduct from "./components/AddProduct";
 
+export const metadata = {
+  title: 'E-commerce Store',
+  description: 'Storeapp',
+ 
+}
 const page = async ({
   params: { productId },
 }: {

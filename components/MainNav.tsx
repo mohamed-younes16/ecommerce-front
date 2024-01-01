@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const MainNav = ({ categories }: { categories: category[] }) => {
   const [index, setindex] = useState<number | null>(null);

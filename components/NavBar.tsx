@@ -1,11 +1,20 @@
+"use client";
 import MainNav from "./MainNav";
 import Link from "next/link";
 import { getAllcategories } from "../actions";
 import { ModeToggle } from "./ui/themeButton";
 import ManageCart from "./ManageCart";
+import { useEffect, useState } from "react";
 
-const NavBar = async () => {
-  const categories = await getAllcategories();
+const NavBar = () => {
+  const [categories, setCtagories] = useState(null);
+  useEffect(() => {
+    (async () => {
+      const cates = await getAllcategories();
+      setCtagories(cates);
+    })();
+  }, []);
+
   return (
     <div
       className="z-50 overflow-auto !fixed
@@ -19,7 +28,7 @@ const NavBar = async () => {
           <h2 className="font-bold text-3xl"> Store</h2>
         </Link>
         <div className="flex items-center gap-6 ">
-          <MainNav categories={categories} />
+          {categories && <MainNav categories={categories} />}
         </div>{" "}
         <div className="flexcenter gap-4 min-w-[150px]">
           <ManageCart />

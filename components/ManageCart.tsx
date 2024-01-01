@@ -17,11 +17,11 @@ import {
   CardTitle,
 } from "./ui/card";
 import { formatedPrice } from "@/utils";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Heading from "./Heading";
 import axios from "axios";
 import { apiLink } from "@/app/layout";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import {  useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
 import { toast } from "sonner";
 

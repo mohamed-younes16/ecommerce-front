@@ -1,28 +1,24 @@
 import { getAllColors, getAllSizes, getCategory } from "@/actions";
 import Filter from "@/components/Filter";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 import ProductsGrid from "@/components/ProductsGrid";
 
 import Image from "next/image";
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { PlusCircledIcon } from "@radix-ui/react-icons";
+
 import { PlusCircle, SearchX } from "lucide-react";
 interface Query {
   colorId?: string;
   sizeId?: string;
   isFeatured?: boolean;
 }
+
+export const metadata = {
+  title: "E-commerce Store",
+  description: "Storeapp",
+};
 const page = async ({
   params: { categoryId },
   searchParams,

@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import "@radix-ui/themes/styles.css";
 import { ReactNode } from "react";
@@ -7,9 +6,7 @@ import { Toaster } from "sonner";
 import { Urbanist } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-
 const font = Urbanist({ subsets: ["latin"] });
-export const revalidate = 3600;
 export const apiLink = process.env.NEXT_PUBLIC_API_URL;
 export default async function RootLayout({
   children,
