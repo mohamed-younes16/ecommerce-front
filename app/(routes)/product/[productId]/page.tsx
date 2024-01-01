@@ -19,10 +19,10 @@ const page = async ({
   const product: product = await getProduct(productId);
 
   return (
-    <div className="">
-      <div className="flex gap-10 flex-wrap">
+    <div className=" my-16">
+      <div className="flex gap-10 max-lg:flex-wrap ">
         <ProductCarousel productImages={product.images} />
-        <div className=" space-y-7">
+        <div className=" space-y-7 max-w-lg">
           <h2 className="text-4xl font-bold">{product.name} </h2>
           <p className="text-xl text-foreground">{product.description} </p>
           <div className="flex text-xl items-center gap-4">

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
@@ -23,16 +22,16 @@ export const useCart = create<Store>()(
           if (
             [...s.products.filter((el: product) => el.id === v.id)].length === 0
           ) {
-            toast.success("added product successfully ");
+            toast.success("added product successfully ",{dismissible: true});
             return { products: [...s.products, v] };
           } else {
-            toast.error("Product already added");
+            toast.error("Product already added",{dismissible: true});
             return s;
           }
         }),
 
       deleteProduct: (v: product) => {
-        toast.success("removed product successfully ");
+        toast.success("removed product successfully ",{dismissible: true});
         return set((s) => ({
           products: [...s.products.filter((el: product) => el.id !== v.id)],
         }));
@@ -43,15 +42,3 @@ export const useCart = create<Store>()(
   )
 );
 
-export const useOrigin = () => {
-  const [mounted, setMounted] = useState(false);
-  const origin: string =
-    typeof window !== "undefined" && window?.location?.origin
-      ? window.location.origin
-      : "";
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) return;
-  return origin;
-};

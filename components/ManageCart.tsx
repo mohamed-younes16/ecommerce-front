@@ -107,7 +107,8 @@ const ManageCart = () => {
           <div className="mt-16 space-y-8">
             <Heading description="mange your cart" title="Cart Items" />
             <div className="flex gap-6 max-lg:flex-wrap">
-              <div className="max-h-[80dvh]   space-y-8 w-full lg:basis-2/3 overflow-scroll">
+              {products.length > 0 ? (
+                 <div className="max-h-[80dvh]   space-y-8 w-full lg:basis-2/3 overflow-scroll">
                 {products.map((e) => (
                   <Card className="w-full relative flex">
                     <Button
@@ -137,6 +138,8 @@ const ManageCart = () => {
                   </Card>
                 ))}
               </div>
+              ):<p className=" text-2xl ">No Items Yet</p>}
+             
               <div className="space-y-6 max-lg:space-y-2 max-lg:fixed max-lg:left-0 p-6 z-40 max-lg:bottom-0 max-lg:bg-background text-2xl font-bold max-lg:w-full  lg:basis-1/3">
                 <h3>Order Sammuary</h3>
                 <div className="flex items-center justify-between ">
@@ -151,7 +154,7 @@ const ManageCart = () => {
                     });
                     window.location = res.data.url;
                   }}
-                  className="!w-full max-lg:text-lg max-lg:py-2  py-6 relative flexcenter   gap-4 text-2xl rounded-3xl "
+                  className="!w-full  mx-auto max-lg:max-w-md  max-lg:text-lg max-lg:py-2  py-6 relative flexcenter   gap-4 text-2xl rounded-3xl "
                 >
                   <Loader2
                     className={`animate-spin  transition-all left-[70px] !h-[20px] absolute  w-0  ${
@@ -167,7 +170,7 @@ const ManageCart = () => {
                     onClick={() => {
                       delteAllProducts();
                     }}
-                    className="!w-full py-6 relative flexcenter max-lg:text-lg max-lg:py-2    gap-4 text-2xl rounded-3xl "
+                    className="!w-full mx-auto max-lg:max-w-md py-6 relative flexcenter max-lg:text-lg max-lg:py-2    gap-4 text-2xl rounded-3xl "
                   >
                     Delete All products
                   </Button>
