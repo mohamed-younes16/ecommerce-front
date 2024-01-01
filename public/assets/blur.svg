@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="b" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#00ffd4"/>
+      <stop offset="1" stop-color="rgba(0,107,255,0.2)"/>
+    </radialGradient>
+    <filter id="a" x="-500" y="-500" width="2000" height="2000" filterUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="50"/>
+    </filter>
+  </defs>
+  <rect width="558.249" height="515.277" fill="#fff" style=""/>
+  <g filter="url(#a)">
+    <svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" transform="translate(-186.93 269.766)">
+      <path fill="url(#b)" d="M400.5 324q-64.5 74-154 80.5t-126-74q-36.5-80.5-8-175T254.5 53q113.5-8 162 94.5t-16 176.5Z"/>
+    </svg>
+  </g>
+</svg>
