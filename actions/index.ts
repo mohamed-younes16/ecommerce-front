@@ -2,32 +2,32 @@
 import qs from "query-string";
 
 const apiLink = process.env.NEXT_PUBLIC_API_URL;
-const revalidate = 1;
+
 export const getBillBoards = async () => {
   return await (
     await fetch(`${apiLink}/billboards`, {
-      next: { revalidate, tags: ["billboards"] },
+      cache:"no-cache" 
     })
   ).json();
 };
 export const getAllSizes = async () => {
   return await (
     await fetch(`${apiLink}/sizes`, {
-      next: { revalidate, tags: ["sizes"] },
+      cache:"no-cache" 
     })
   ).json();
 };
 export const getAllColors = async () => {
   return await (
     await fetch(`${apiLink}/colors`, {
-      next: { revalidate, tags: ["colors"] },
+      cache:"no-cache" 
     })
   ).json();
 };
 export const getAllcategories = async () => {
   return await (
     await fetch(`${apiLink}/categories`, {
-      next: { revalidate, tags: ["categories"] },
+      cache:"no-cache" 
     })
   ).json();
 };
@@ -45,7 +45,8 @@ export const getAllProducts = async (query: Query) => {
   console.log(url);
   return await (
     await fetch(url, {
-      next: { revalidate, tags: ["products"] },
+      
+      cache:"no-cache" 
     })
   ).json();
 };
@@ -54,7 +55,7 @@ export const getProduct = async (id: string) => {
 
   return await (
     await fetch(`${apiLink}/products/${id}`, {
-      next: { revalidate, tags: ["billboards"] },
+      cache:"no-cache" 
     })
   ).json()
  
@@ -68,7 +69,7 @@ export const getCategory = async (query: Query) => {
   console.log(url)
   return await (
     await fetch(url, {
-      next: { revalidate, tags: ["billboards"] },
+      cache:"no-cache" 
     })
   ).json();
 };

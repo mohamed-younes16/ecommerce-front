@@ -65,7 +65,7 @@ const Footer = () => {
             <Input
               placeholder="example@domain.com"
               type="text"
-              className="  !border-none !outline-none h-[60px]  !ring-0 !shadow-none"
+              className="  !border-none text-foreground !outline-none h-[60px]  !ring-0 !shadow-none"
             />
           </div>
           <Button className="h-[60px] rounded-xl px-8 hover:scale-110 max-md:text-lg active:scale-95 !bg-opacity-100 transition-all text-2xl">
@@ -86,10 +86,10 @@ const Footer = () => {
               delay:i*.3
             }}
             viewport={{once: true}}
-            className="flexcenter py-7 cursor-pointer rounded-2xl backdrop-blur-md 
+            className="flex items-center py-7 cursor-pointer rounded-2xl backdrop-blur-md 
             hover:translate-x-1 duration-75 hover:-translate-y-1 hover:shadow-2xl gap-4"
           >
-            <Image src={e.icon} height={50} width={50} alt={e.desc} />
+            <Image src={e.icon} className=" object-contain  h-[60px] w-[60px]" height={50} width={50} alt={e.desc} />
             <div>
               <h2 className=" font-bold mb-1 text-xl">{e.title}</h2>
               <h4>{e.desc}</h4>

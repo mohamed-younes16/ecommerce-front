@@ -1,6 +1,6 @@
 type DateTime = string;
 
-type sizevalue = 'S' | 'M' | 'L' | 'XL' | 'XXL' | 'XXXL';
+type sizevalue = "S" | "M" | "L" | "XL" | "XXL" | "XXXL";
 
 interface Store {
   id: string;
@@ -25,6 +25,7 @@ interface billBoard {
   createdAt: DateTime;
   updatedAt: DateTime;
   categories: category[];
+  labelColor: string;
 }
 
 interface category {

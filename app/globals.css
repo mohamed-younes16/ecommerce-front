@@ -10,6 +10,7 @@
 }
 
 p.desc {
+  
   padding: 0;                              /* <------ optional */
   height: var(--element-height);           /* <------ optional */
   text-overflow: ellipsis;                 /* <------ required */

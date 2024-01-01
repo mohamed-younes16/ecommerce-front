@@ -34,7 +34,7 @@ const ProductsGrid = ({
   return (
     <div className="my-12">
       <h2 className=" font-bold text-3xl my-6 ">{title} </h2>
-      <div className=" grid grid-cols-1 gap-6   md:grid-cols-2 lg:grid-cols-3 ">
+      <div className=" grid max-md:w-fit max-md:mx-auto gap-6 grid-cols-[repeat(auto-fill_,_minmax(350px_,1fr))] ">
         {items.map((e, i) => (
           <m.div
             viewport={{ once: true }}
@@ -97,7 +97,7 @@ const ProductsGrid = ({
                 </div>
                 <Image
                   alt={e.description}
-                  className="object-cover rounded-xl !w-full !h-full"
+                  className="object-contain rounded-xl !w-full !h-full"
                   src={e.images[0].url}
                   height={50}
                   width={100}
