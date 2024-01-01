@@ -15,7 +15,7 @@ type Store = {
 export const useCart = create<Store>()(
   persist(
     (set) => ({
-      SideBarOpen: true,
+      SideBarOpen: false,
       setSideBarOpen: (v: boolean) => set(() => ({ SideBarOpen: v })),
       products: [],
       addProducts: (v: product) =>
