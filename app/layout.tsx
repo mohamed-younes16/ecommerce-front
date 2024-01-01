@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import { Metadata } from "next";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import "@radix-ui/themes/styles.css";
 import { ReactNode } from "react";
@@ -7,7 +7,6 @@ import { Toaster } from "sonner";
 import { Urbanist } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-
 
 const font = Urbanist({ subsets: ["latin"] });
 export const revalidate = 3600;
@@ -25,10 +24,13 @@ export default async function RootLayout({
         enableSystem
         storageKey="admin-theme"
       >
-        <body suppressHydrationWarning  className="  min-h-screen dark:bg-[url(/assets/magicdark.svg)] transition-all 
-      bg-cover    p-6   bg-[url(/assets/light-bg.svg)] pt-[calc(100px_+_2rem)]  dark:bg-transparent bg-[#3e3e3efc]
+        <body
+          suppressHydrationWarning
+          className="  min-h-screen dark:bg-[url(/assets/magicdark.svg)] transition-all 
+        p-6 bg-cover bg-no-repeat   bg-[url(/assets/light-bg.svg)] pt-[calc(100px_+_2rem)]  dark:bg-transparent bg-[#3e3e3efc]
         
-      ">
+      "
+        >
           <Toaster richColors position="top-center" />
 
           <NavBar />

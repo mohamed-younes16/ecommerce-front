@@ -1,25 +1,22 @@
 "use client";
-
-
 import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
-import React, {  useState } from "react";
 
-const MainNav = ({categories}:{categories:category[]}) => {
+import React, { useEffect, useState } from "react";
 
+const MainNav = ({ categories }: { categories: category[] }) => {
+  const [index, setindex] = useState<number | null>(null);
 
-  const [index, setindex] = useState<number|null>(null);
-
-  const pathname = usePathname();
 
   return (
     <div className=" flex gap-[10px] relative">
-      {index!==null && <div
-        style={{ translate: `${80 * index + index * 10}px 0` }}
-        className={`absolute origin-left duration-150
+      {index !== null && (
+        <div
+          style={{ translate: `${80 * index + index * 10}px 0` }}
+          className={`absolute origin-left duration-150
           bottom-0 left-0 z-10 h-[4px] w-[80px]
             bg-cyan-400  `}
-      />}
+        />
+      )}
 
       {categories.map((e, i) => (
         <div
