@@ -1,14 +1,13 @@
 import { getAllColors, getAllSizes, getCategory } from "@/actions";
 import Filter from "@/components/Filter";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-
 import ProductsGrid from "@/components/ProductsGrid";
-
-import Image from "next/image";
 import React from "react";
 import { Button } from "@/components/ui/button";
 
 import { PlusCircle, SearchX } from "lucide-react";
+
+import BillBoard from "@/components/BillBoard";
 interface Query {
   colorId?: string;
   sizeId?: string;
@@ -33,26 +32,13 @@ const page = async ({
     sizeId,
     isFeatured,
   });
-  console.log(category);
+
   const colors = await getAllColors();
   const sizes = await getAllSizes();
 
   return (
     <div className=" space-y-8 mb-8">
-      <div className=" max-md:h-[200px] max-w-7xl overflow-hidden relative mx-auto rounded-xl h-[500px]">
-        <div
-          className="absolute z-10 w-full hover:backdrop-blur-0 duration-500
-         transition-all backdrop-blur-sm h-full flexcenter text-white -translate-y-1/2  top-1/2 max-md:text-2xl font-bold text-5xl"
-        >
-          {category.billboard.label}{" "}
-        </div>
-        <Image
-          alt=""
-          fill
-          src={category.billboard.imageUrl}
-          className=" object-cover"
-        />
-      </div>
+      <BillBoard link={false} billboard={category.billboard} />
 
       <div className="flex flex-col items-center justify-center gap-10">
         <div className=" hidden xl:flex gap-6">

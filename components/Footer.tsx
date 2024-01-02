@@ -1,10 +1,17 @@
 "use client";
 
-import { MailOpenIcon } from "lucide-react";
+import {
+  FacebookIcon,
+  InstagramIcon,
+  Linkedin,
+  MailOpenIcon,
+  TwitterIcon,
+} from "lucide-react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { motion as m } from "framer-motion";
+import Link from "next/link";
 
 const Footer = () => {
   const servicesData = [
@@ -31,8 +38,31 @@ const Footer = () => {
       icon: "/assets/service4.png",
     },
   ];
+  const socialLinks = [
+    {
+      name: "facebook",
+      icon: <FacebookIcon />,
+      link: "https://www.facebook.com/profile.php?id=100070339100609",
+    },
+    {
+      name: "Instagram",
+      icon: <InstagramIcon />,
+      link: "https://www.instagram.com/younesmohamed_77",
+    },
+    {
+      name: "Twitter",
+      icon: <TwitterIcon />,
+      link: "https://twitter.com/younesmed_77",
+    },
+    {
+      name: "LinkedIn",
+      icon: <Linkedin />,
+      link: "https://twitter.com/younesmed_77",
+    },
+  ];
+
   return (
-    <div className="max-w-7xl space-y-10 mb-20 mx-auto">
+    <div className="max-w-7xl space-y-10  mx-auto">
       <div className="relative p-32 mb-14 max-md:p-6 !text-white  w-full rounded-2xl ">
         <Image
           alt=""
@@ -76,26 +106,59 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grif-cols-2 gap-3 lg:grid-cols-4">
         {servicesData.map((e, i) => (
           <m.div
-            initial={{ scale: 0 ,rotateZ:30 }}
-            whileInView={{ rotateZ: 0, scale: 1, }}
+            initial={{ scale: 0, rotateZ: 30 }}
+            whileInView={{ rotateZ: 0, scale: 1 }}
             transition={{
               type: "spring",
               stiffness: 260,
               damping: 20,
 
-              delay:i*.3
+              delay: i * 0.3,
             }}
-            viewport={{once: true}}
+            viewport={{ once: true }}
             className="flex items-center py-7 cursor-pointer rounded-2xl backdrop-blur-md 
             hover:translate-x-1 duration-75 hover:-translate-y-1 hover:shadow-2xl gap-4"
           >
-            <Image src={e.icon} className=" object-contain  h-[60px] w-[60px]" height={50} width={50} alt={e.desc} />
+            <Image
+              src={e.icon}
+              className=" object-contain  h-[60px] w-[60px]"
+              height={50}
+              width={50}
+              alt={e.desc}
+            />
             <div>
               <h2 className=" font-bold mb-1 text-xl">{e.title}</h2>
               <h4>{e.desc}</h4>
             </div>
           </m.div>
         ))}
+      </div>
+      <div className="mt-6 flexcenter max-lg:space-y-4 pb-4 max-lg:flex-col">
+        <div className="flex-1 flexcenter gap-4 py-4">
+          {socialLinks.map((e, i) => (
+            <Link
+              href={e.link}
+              key={i}
+              className="group relative p-2 rounded-full "
+            >
+              <div className="absolute  z-[2] inset-0 rounded-full bg-cyan-500 scale-0 transition-all group-hover:scale-100 "></div>
+              <div className="relative z-10  transition-all group-hover:text-white">
+                {e.icon}
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="flex-1 py4 text-foreground ">
+          {" "}
+          © 2024. All rights reserved .{" "}
+        </div>
+        <div className="flex-1 flex gap-4 py4">
+          <p>Accept </p>
+          <Image alt=""  src={"/assets/cart-1.png"} height={40} width={40} className=" h-[30px] w-[30px] object-contain"/>
+          <Image alt=""  src={"/assets/cart-2.png"} height={40} width={40} className=" h-[30px] w-[30px]  object-contain"/>
+          <Image alt=""  src={"/assets/cart-5.png"} height={40} width={40} className=" h-[30px] w-[30px]  object-contain"/>
+          <Image alt=""  src={"/assets/cart-4.ico"} height={40} width={40} className=" h-[30px] w-[30px]  object-contain"/>
+        </div>
       </div>
     </div>
   );

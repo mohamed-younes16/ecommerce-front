@@ -24,7 +24,7 @@ export default async function RootLayout({
         <body
           suppressHydrationWarning
           className="  min-h-screen dark:bg-[url(/assets/magicdark.svg)] transition-all 
-        p-6 bg-cover bg-no-repeat   bg-[url(/assets/light-bg.svg)] pt-[calc(100px_+_2rem)]  dark:bg-transparent bg-[#3e3e3efc]
+        p-6 pb-0 bg-cover bg-no-repeat   bg-[url(/assets/light-bg.svg)] pt-[calc(100px_+_2rem)]  dark:bg-transparent bg-[#3e3e3efc]
         
       "
         >

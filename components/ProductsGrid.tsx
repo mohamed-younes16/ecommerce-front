@@ -103,58 +103,61 @@ const ProductsGrid = ({
                   width={100}
                 />
               </CardContent>{" "}
-              <CardHeader>
-                <CardTitle>
-                  <m.p
-                    viewport={{ once: true }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{
-                      delay: i * 0.3 + 0.3,
-                      duration: 0.6,
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 20,
-                    }}
-                    initial={{ opacity: 0, x: 100 }}
-                  >
-                    {" "}
-                    {e.name}
-                  </m.p>
-                </CardTitle>
-                <CardTitle className="!my-2">
-                  <m.p
-                    viewport={{ once: true }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{
-                      delay: i * 0.3 + 0.3,
-                      duration: 0.6,
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 20,
-                    }}
-                    initial={{ opacity: 0, x: -100 }}
-                  >
-                    {formatedPrice(e.price)}{" "}
-                  </m.p>
-                </CardTitle>
-                <CardDescription>
-                  <m.p
-                    viewport={{ once: true }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{
-                      delay: i * 0.3 + 0.3,
-                      duration: 0.6,
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 20,
-                    }}
-                    initial={{ opacity: 0, x: 100 }}
-                    className="desc"
-                  >
-                    {e.description}
-                  </m.p>
-                </CardDescription>
-              </CardHeader>
+              <Link href={`/product/${e.id}`}>
+                {" "}
+                <CardHeader>
+                  <CardTitle>
+                    <m.p
+                      viewport={{ once: true }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{
+                        delay: i * 0.3 + 0.3,
+                        duration: 0.6,
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 20,
+                      }}
+                      initial={{ opacity: 0, x: 100 }}
+                    >
+                      {" "}
+                      {e.name}
+                    </m.p>
+                  </CardTitle>
+                  <CardTitle className="!my-2">
+                    <m.p
+                      viewport={{ once: true }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{
+                        delay: i * 0.3 + 0.3,
+                        duration: 0.6,
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 20,
+                      }}
+                      initial={{ opacity: 0, x: -100 }}
+                    >
+                      {formatedPrice(e.price)}{" "}
+                    </m.p>
+                  </CardTitle>
+                  <CardDescription>
+                    <m.p
+                      viewport={{ once: true }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{
+                        delay: i * 0.3 + 0.3,
+                        duration: 0.6,
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 20,
+                      }}
+                      initial={{ opacity: 0, x: 100 }}
+                      className="desc"
+                    >
+                      {e.description}
+                    </m.p>
+                  </CardDescription>
+                </CardHeader>
+              </Link>
               <CardFooter className="flex justify-between">
                 <Link href={`/product/${e.id}`}>
                   {" "}

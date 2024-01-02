@@ -3,11 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/hooks/store";
 import { ShoppingBag } from "lucide-react";
+import { useEffect } from "react";
 
 const AddProduct = ({ product }: { product: product }) => {
-  const { addProducts, products, deleteProduct } = useCart();
+  const { addProducts, products, deleteProduct ,setSideBarOpen } = useCart();
   const isInCart = products.find((e) => e.id === product.id);
-
+useEffect(() =>setSideBarOpen(false),[])
   return (
     <div className="flex max-md:flex-wrap gap-6 !w-full">
       <Button
