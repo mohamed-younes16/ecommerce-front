@@ -19,7 +19,7 @@ const CatgoriesCarousel = ({ categories }: { categories: category[] }) => {
     <Carousel
       opts={OPTIONS}
       plugins={[plugin.current]}
-      className="w-full max-w-xl mx-auto   max-h-[150px] my-12"
+      className="w-fit max-w-[65dvw] mx-auto   max-h-[150px] my-12"
     >
       <CarouselContent>
         {categories
@@ -28,10 +28,10 @@ const CatgoriesCarousel = ({ categories }: { categories: category[] }) => {
           .map((e, index) => (
             <CarouselItem
               key={index}
-              className=" mx-2  max-w-[110px]  min-w-[110px]   "
+              className="  max-w-[110px] max-md:pl-1 max-md:max-w-[80px] md:min-w-[110px]   "
             >
                 <Link href={`/categories/${e.id}`}>
-                <Card className=" flexcenter  flex-col gap-2 p-4  relative">
+                <Card className=" flexcenter  max-md:max-w-[80px] flex-col gap-2 p-2  relative">
                 <Image
                   height={50}
                   width={50}
