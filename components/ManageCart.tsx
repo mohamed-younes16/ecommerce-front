@@ -80,7 +80,7 @@ const ManageCart = () => {
   const total = () => {
     let tot = 0;
     products &&
-      products.forEach((e) => {
+      products.forEach((e:any) => {
         tot += Number(e.product.price) * e.quantity;
       });
     return tot;
