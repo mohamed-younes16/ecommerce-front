@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -30,9 +27,10 @@ model Store {
 model billBoard {
   id         String     @id @unique @default(cuid())
   storeId    String
-  store      Store      @relation("storeToBillBoard", fields: [storeId], references: [id])
+  store      Store      @relation("storeToBillBoard", fields: [storeId], references: [id], onDelete: Cascade)
   imageUrl   String
   label      String
+  labelColor String     @default("")
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
   categories category[] @relation("billboardToCategory")
@@ -43,13 +41,14 @@ model billBoard {
 model category {
   id          String    @id @unique @default(cuid())
   storeId     String
-  store       Store     @relation("storeToCategory", fields: [storeId], references: [id])
+  store       Store     @relation("storeToCategory", fields: [storeId], references: [id], onDelete: Cascade)
   billboardId String
   billboard   billBoard @relation("billboardToCategory", fields: [billboardId], references: [id])
   name        String
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   products    product[] @relation("productocategory")
+  logo        String    @default("")
 
   @@index([id])
 }
@@ -57,7 +56,7 @@ model category {
 model size {
   id        String    @id @unique @default(cuid())
   storeId   String
-  store     Store     @relation("storetosize", fields: [storeId], references: [id])
+  store     Store     @relation("storetosize", fields: [storeId], references: [id], onDelete: Cascade)
   name      String
   value     sizevalue
   createdAt DateTime  @default(now())
@@ -79,7 +78,7 @@ enum sizevalue {
 model color {
   id        String    @id @unique @default(cuid())
   storeId   String
-  store     Store     @relation("storetoColor", fields: [storeId], references: [id])
+  store     Store     @relation("storetoColor", fields: [storeId], references: [id], onDelete: Cascade)
   name      String
   value     String
   createdAt DateTime  @default(now())
@@ -92,7 +91,7 @@ model color {
 model product {
   id          String      @id @unique @default(cuid())
   storeId     String
-  store       Store       @relation("storetoProduct", fields: [storeId], references: [id])
+  store       Store       @relation("storetoProduct", fields: [storeId], references: [id], onDelete: Cascade)
   name        String
   sizeId      String
   size        size        @relation("productosize", fields: [sizeId], references: [id])
@@ -124,15 +123,15 @@ model Image {
 }
 
 model order {
-  id           String      @id @unique @default(cuid())
-  storeId      String
-  store        Store       @relation("storetoOrder", fields: [storeId], references: [id])
-  phoneNumber  String      @default("")
-  address String      @default("")
-  isPaid       Boolean
-  items        orderItem[] @relation("ordertoItem")
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
+  id          String      @id @unique @default(cuid())
+  storeId     String
+  store       Store       @relation("storetoOrder", fields: [storeId], references: [id])
+  phoneNumber String      @default("")
+  address     String      @default("")
+  isPaid      Boolean
+  items       orderItem[] @relation("ordertoItem")
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 
   @@index([id])
 }
@@ -140,9 +139,10 @@ model order {
 model orderItem {
   id        String  @id @unique @default(cuid())
   orderId   String
-  store     order   @relation("ordertoItem", fields: [orderId], references: [id])
+  order     order   @relation("ordertoItem", fields: [orderId], references: [id], onDelete: Cascade)
   productId String
-  Product   product @relation("productToItem", fields: [productId], references: [id])
+  product   product @relation("productToItem", fields: [productId], references: [id], onDelete: Cascade)
+  count     Int?    @default(1)
 
   @@index([id])
 }

@@ -32,7 +32,7 @@ const ProductsGrid = ({
 }) => {
   const { addProducts } = useCart();
   return (
-    <div className="my-12">
+    <div className="my-12 w-full">
       <h2 className=" font-bold text-3xl my-6 ">{title} </h2>
       <div className=" grid max-md:w-fit max-md:mx-auto gap-6 grid-cols-[repeat(auto-fill_,_minmax(350px_,1fr))] ">
         {items.map((e, i) => (
