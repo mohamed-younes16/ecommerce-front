@@ -1,7 +1,6 @@
 "use client";
 import {
   Carousel,
-  CarouselApi,
   CarouselContent,
   CarouselItem,
   CarouselNext,
@@ -11,7 +10,7 @@ import Image from "next/image";
 import React from "react";
 
 const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
-  const [api, setApi] = React.useState<CarouselApi>();
+  const [api, setApi] = React.useState<any>();
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
 
@@ -50,11 +49,11 @@ const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
       <div className="flex p-6 select-none cursor-pointer overflow-auto gap-6 max-w-2xl">
         {productImages.map((e, i) => (
           <Image
-          key={i}
+            key={i}
             className={`rounded-xl object-contain  transition-all
              select-none h-   () selection:!bg-none  border-4 ${
-              current == i + 1 && "border-cyan-400"
-            }`}
+               current == i + 1 && "border-cyan-400"
+             }`}
             alt=""
             onClick={() => api?.scrollTo(i)}
             height={40}
