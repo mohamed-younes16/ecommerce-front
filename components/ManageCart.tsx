@@ -7,7 +7,14 @@ import {
 } from "@/components/ui/sheet";
 import { productType, useCart } from "@/hooks/store";
 import { Button } from "./ui/button";
-import { Loader2, Minus, PlusCircle, ShoppingBag, ShoppingBasketIcon, X } from "lucide-react";
+import {
+  Loader2,
+  Minus,
+  PlusCircle,
+  ShoppingBag,
+  ShoppingBasketIcon,
+  X,
+} from "lucide-react";
 import Image from "next/image";
 import {
   Card,
@@ -80,7 +87,7 @@ const ManageCart = () => {
   const total = () => {
     let tot = 0;
     products &&
-      products.forEach((e:any) => {
+      products.forEach((e: any) => {
         tot += Number(e.product.price) * e.quantity;
       });
     return tot;
@@ -107,7 +114,12 @@ const ManageCart = () => {
             </Button>
           </SheetClose>
           <div className="mt-16 space-y-8">
-            <Heading color="green" icon={<ShoppingBasketIcon/>}  description="mange your cart" title="Cart Items" />
+            <Heading
+              color="green"
+              icon={<ShoppingBasketIcon />}
+              description="mange your cart"
+              title="Cart Items"
+            />
             <div className="flex gap-6 max-lg:flex-wrap">
               {products.length > 0 ? (
                 <div className="h-[80dvh] max-lg:h-[50dvh] max-lg:pb-6   space-y-8 w-full lg:basis-2/3 overflow-scroll">
@@ -176,53 +188,60 @@ const ManageCart = () => {
                 <p className=" text-2xl ">No Items Yet</p>
               )}
 
-              <div className="space-y-6 max-lg:space-y-2 max-lg:fixed max-lg:left-0 p-6 z-40 max-lg:bottom-0 max-lg:bg-background text-2xl font-bold max-lg:w-full  lg:basis-1/3">
-                <h3>Order Sammuary</h3>
-                <div className="flex items-center justify-between ">
-                  Order Total Price <p>{formatedPrice(total() || 0)}</p>
-                </div>
+              {products.length > 0 && (
+                <div className="space-y-6 max-lg:space-y-2 max-lg:fixed max-lg:left-0 p-6 z-40 max-lg:bottom-0 max-lg:bg-background text-2xl font-bold max-lg:w-full  lg:basis-1/3">
+                  <h3>Order Sammuary</h3>
+                  <div className="flex items-center justify-between ">
+                    Order Total Price <p>{formatedPrice(total() || 0)}</p>
+                  </div>
 
-                {products.length > 0 && (
-                  <>
-                    {" "}
-                    <Button
-                      disabled={fetching}
-                      onClick={async () => {
-                        setIsFetching(true);
-                        if (products.length > 0) {
-                          const res = await axios.post(`${apiLink}/checkout`, {
-                            productsData: products.map((e: productType) => ({
-                              productId: e.product.id,
-                              quantity: e.quantity,
-                            })),
-                          });
+                  {products.length > 0 && (
+                    <>
+                      {" "}
+                      <Button
+                        disabled={fetching}
+                        onClick={async () => {
+                          setIsFetching(true);
+                          if (products.length > 0) {
+                            const res = await axios.post(
+                              `${apiLink}/checkout`,
+                              {
+                                productsData: products.map(
+                                  (e: productType) => ({
+                                    productId: e.product.id,
+                                    quantity: e.quantity,
+                                  })
+                                ),
+                              }
+                            );
+                            setIsFetching(false);
+                            window.location = res.data.url;
+                          }
                           setIsFetching(false);
-                          window.location = res.data.url;
-                        }
-                        setIsFetching(false);
-                      }}
-                      className="!w-full  mx-auto max-lg:max-w-md  max-lg:text-lg max-lg:py-2  py-6 relative flexcenter   gap-4 text-2xl rounded-3xl "
-                    >
-                      <Loader2
-                        className={`animate-spin  transition-all left-[70px] !h-[20px] absolute  w-0  ${
-                          fetching && "!w-[20px] "
-                        } `}
-                      />
-                      Checkout
-                    </Button>
-                    <Button
-                      variant={"destructive"}
-                      disabled={fetching}
-                      onClick={() => {
-                        delteAllProducts();
-                      }}
-                      className="!w-full mx-auto max-lg:max-w-md py-6 relative flexcenter max-lg:text-lg max-lg:py-2    gap-4 text-2xl rounded-3xl "
-                    >
-                      Delete All products
-                    </Button>
-                  </>
-                )}
-              </div>
+                        }}
+                        className="!w-full  mx-auto max-lg:max-w-md  max-lg:text-lg max-lg:py-2  py-6 relative flexcenter   gap-4 text-2xl rounded-3xl "
+                      >
+                        <Loader2
+                          className={`animate-spin  transition-all left-[70px] !h-[20px] absolute  w-0  ${
+                            fetching && "!w-[20px] "
+                          } `}
+                        />
+                        Checkout
+                      </Button>
+                      <Button
+                        variant={"destructive"}
+                        disabled={fetching}
+                        onClick={() => {
+                          delteAllProducts();
+                        }}
+                        className="!w-full mx-auto max-lg:max-w-md py-6 relative flexcenter max-lg:text-lg max-lg:py-2    gap-4 text-2xl rounded-3xl "
+                      >
+                        Delete All products
+                      </Button>
+                    </>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </SheetContent>
