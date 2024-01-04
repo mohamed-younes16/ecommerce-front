@@ -5,9 +5,9 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useCart } from "@/hooks/store";
+import { productType, useCart } from "@/hooks/store";
 import { Button } from "./ui/button";
-import { Loader2, ShoppingBag, X } from "lucide-react";
+import { Loader2, Minus, PlusCircle, ShoppingBag, ShoppingBasketIcon, X } from "lucide-react";
 import Image from "next/image";
 import {
   Card,
@@ -33,6 +33,7 @@ const ManageCart = () => {
     SideBarOpen,
     setSideBarOpen,
     delteAllProducts,
+    setquantity,
   } = useCart();
   const searchParams = useSearchParams();
 
@@ -80,7 +81,7 @@ const ManageCart = () => {
     let tot = 0;
     products &&
       products.forEach((e) => {
-        tot += Number(e.price);
+        tot += Number(e.product.price) * e.quantity;
       });
     return tot;
   };
@@ -88,7 +89,7 @@ const ManageCart = () => {
   return (
     <div>
       <Sheet open={SideBarOpen}>
-        <SheetTrigger onClick={() => setSideBarOpen(!SideBarOpen)}>
+        <SheetTrigger asChild onClick={() => setSideBarOpen(!SideBarOpen)}>
           <Button className="flexcenter gap-6 text-xl">
             <ShoppingBag /> {products.length}
           </Button>
@@ -106,40 +107,68 @@ const ManageCart = () => {
             </Button>
           </SheetClose>
           <div className="mt-16 space-y-8">
-            <Heading description="mange your cart" title="Cart Items" />
+            <Heading color="green" icon={<ShoppingBasketIcon/>}  description="mange your cart" title="Cart Items" />
             <div className="flex gap-6 max-lg:flex-wrap">
               {products.length > 0 ? (
                 <div className="h-[80dvh] max-lg:h-[50dvh] max-lg:pb-6   space-y-8 w-full lg:basis-2/3 overflow-scroll">
-                  {products.map((e) => (
-                    <Card className="w-full relative flex">
+                  {products.map((e: { product: product; quantity: number }) => (
+                    <Card
+                      key={e.product.id}
+                      className="w-full relative flex flex-col"
+                    >
+                      <div className="flex w-full">
+                        <div
+                          className=" group basis-1/3 max-w-[100px] min-w-[100px] 
+                      rounded-xl  relative"
+                        >
+                          <Image
+                            alt={e.product.id}
+                            className="object-contain rounded-xl "
+                            src={e.product.images[0].url}
+                            fill
+                          />
+                        </div>{" "}
+                        <Link href={`/product/${e.product.id}`}>
+                          <CardHeader className="basis-2/3">
+                            <CardTitle>{e.product.name}</CardTitle>
+                            <CardTitle className="!my-2">
+                              {formatedPrice(e.product.price)}
+                            </CardTitle>
+                            <CardDescription className="text-lg font-semibold desc max-md:text-sm">
+                              {e.product.description}
+                            </CardDescription>
+                          </CardHeader>
+                        </Link>{" "}
+                      </div>
+
                       <Button
                         className="absolute top-2 py-0 px-4 right-2 z-30 "
-                        onClick={() => deleteProduct(e)}
+                        onClick={() => deleteProduct(e.product)}
                       >
                         <X className="max-md:h-4 z-30 max-md:w-4 md-h-6 md:h-6" />
                       </Button>
-                      <div
-                        className="h-[200px] group basis-1/3 w-[150px] max-md:min-w-[100px] 
-                      rounded-xl  relative"
-                      >
-                        <Image
-                          alt={e.description}
-                          className="object-contain rounded-xl "
-                          src={e.images[0].url}
-                          fill
-                        />
-                      </div>{" "}
-                      <Link href={`/product/${e.id}`}>
-                        <CardHeader className="basis-2/3">
-                          <CardTitle>{e.name}</CardTitle>
-                          <CardTitle className="!my-2">
-                            {formatedPrice(e.price)}
-                          </CardTitle>
-                          <CardDescription className="text-xl font-semibold desc max-md:text-sm">
-                            {e.description}
-                          </CardDescription>
-                        </CardHeader>
-                      </Link>
+
+                      <div className="text-lg ml-[100px] pl-6 pb-6 font-semibold !flex items-center gap-6 r desc max-md:text-sm">
+                        <div className=" !flex w-[150px]   gap-6 items-center">
+                          <Button
+                            onClick={() => setquantity(e.product.id, 1)}
+                            className="bg-green-400"
+                          >
+                            <PlusCircle />
+                          </Button>
+                          <Button
+                            onClick={() => setquantity(e.product.id, -1)}
+                            className="bg-red-400"
+                          >
+                            <Minus />
+                          </Button>
+                        </div>
+                        <div>
+                          <Button className="text-xl " variant={"ghost"}>
+                            {e.quantity}
+                          </Button>
+                        </div>
+                      </div>
                     </Card>
                   ))}
                 </div>
@@ -160,12 +189,15 @@ const ManageCart = () => {
                       disabled={fetching}
                       onClick={async () => {
                         setIsFetching(true);
-                        if(products.length > 0 ) {
-                           const res = await axios.post(`${apiLink}/checkout`, {
-                          productIds: products.map((e) => e.id),
-                        });
-                        setIsFetching(false);
-                        window.location = res.data.url;
+                        if (products.length > 0) {
+                          const res = await axios.post(`${apiLink}/checkout`, {
+                            productsData: products.map((e: productType) => ({
+                              productId: e.product.id,
+                              quantity: e.quantity,
+                            })),
+                          });
+                          setIsFetching(false);
+                          window.location = res.data.url;
                         }
                         setIsFetching(false);
                       }}

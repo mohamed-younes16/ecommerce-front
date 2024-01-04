@@ -4,6 +4,7 @@ import Heading from "@/components/Heading";
 import ProductsGrid from "@/components/ProductsGrid";
 import Link from "next/link";
 import BillBoard from "@/components/BillBoard";
+import { ShoppingCart } from "lucide-react";
 
 export const metadata = {
   title: "E-commerce Store",
@@ -21,7 +22,8 @@ export default async function Home() {
       <BillBoard link={true} billboard={targetbillBoard} />
       <div className="min-h-screen max-w-7xl mx-auto  ">
         {" "}
-        <Heading className="mt-6" description="all products" title="Products" />
+
+        <Heading icon={<ShoppingCart />} color="#8c71db" className="mt-6" description="all products" title="Products" />
         <ProductsGrid items={products} title="ProductsList" />
       </div>
     </div>

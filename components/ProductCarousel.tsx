@@ -50,6 +50,7 @@ const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
       <div className="flex p-6 select-none cursor-pointer overflow-auto gap-6 max-w-2xl">
         {productImages.map((e, i) => (
           <Image
+          key={i}
             className={`rounded-xl object-contain  transition-all
              select-none h-   () selection:!bg-none  border-4 ${
               current == i + 1 && "border-cyan-400"

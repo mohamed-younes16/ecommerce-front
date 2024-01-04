@@ -38,6 +38,7 @@ interface category {
   createdAt: DateTime;
   updatedAt: DateTime;
   products: product[];
+  logo: string;
 }
 
 interface size {
@@ -110,4 +111,5 @@ interface orderItem {
   store: order;
   productId: string;
   Product: product;
+  
 }

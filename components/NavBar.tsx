@@ -5,6 +5,7 @@ import { getAllcategories } from "../actions";
 import { ModeToggle } from "./ui/themeButton";
 import ManageCart from "./ManageCart";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 const NavBar = () => {
   const [categories, setCtagories] = useState(null);
@@ -17,22 +18,26 @@ const NavBar = () => {
 
   return (
     <div
-      className="z-50 overflow-auto !fixed
+      className="z-50 overflow-x- overflow-y-visible !fixed
         h-[100px] shadow-2xl dark:bg-zinc-700 !bg-opacity-50
         bg-zinc-200
         hover:shadow-[#898989c3] transition-all   w-[94%] mx-auto left-[3%] rounded-lg top-[10px] p-4 
     backdrop-blur-md  "
     >
       <div className="flex h-full justify-between items-center">
-        <Link href="/">
+        <Link className="basis-1/3" href="/">
           <h2 className="font-bold text-3xl"> Store</h2>
         </Link>
-        <div className="flex items-center gap-6 ">
-          {categories && <MainNav categories={categories} />}
-        </div>{" "}
-        <div className="flexcenter gap-4 min-w-[150px]">
-          <ManageCart />
-          <ModeToggle />
+        <div className="flex gap-[0.25rem] max-lg:flex-row-reverse max-lg:justify-start items-center w-full lg:justify-between">
+          <div className="flexcenter  max-lg:justify-end w-full max-lg:w-[56px] gap-6 ">
+            {categories && <MainNav categories={categories} />}
+          </div>
+          <div className="flexcenter gap-3 min-w-[180px]">
+            <ManageCart />
+            <Button>
+              <ModeToggle />
+            </Button>
+          </div>
         </div>
       </div>
     </div>

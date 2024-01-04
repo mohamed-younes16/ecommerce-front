@@ -106,6 +106,7 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grif-cols-2 gap-3 lg:grid-cols-4">
         {servicesData.map((e, i) => (
           <m.div
+            key={i}
             initial={{ scale: 0, rotateZ: 30 }}
             whileInView={{ rotateZ: 0, scale: 1 }}
             transition={{
@@ -154,10 +155,34 @@ const Footer = () => {
         </div>
         <div className="flex-1 flex gap-4 py4">
           <p>Accept </p>
-          <Image alt=""  src={"/assets/cart-1.png"} height={40} width={40} className=" h-[30px] w-[30px] object-contain"/>
-          <Image alt=""  src={"/assets/cart-2.png"} height={40} width={40} className=" h-[30px] w-[30px]  object-contain"/>
-          <Image alt=""  src={"/assets/cart-5.png"} height={40} width={40} className=" h-[30px] w-[30px]  object-contain"/>
-          <Image alt=""  src={"/assets/cart-4.ico"} height={40} width={40} className=" h-[30px] w-[30px]  object-contain"/>
+          <Image
+            alt=""
+            src={"/assets/cart-1.png"}
+            height={40}
+            width={40}
+            className=" h-[30px] w-[30px] object-contain"
+          />
+          <Image
+            alt=""
+            src={"/assets/cart-2.png"}
+            height={40}
+            width={40}
+            className=" h-[30px] w-[30px]  object-contain"
+          />
+          <Image
+            alt=""
+            src={"/assets/cart-5.png"}
+            height={40}
+            width={40}
+            className=" h-[30px] w-[30px]  object-contain"
+          />
+          <Image
+            alt=""
+            src={"/assets/cart-4.ico"}
+            height={40}
+            width={40}
+            className=" h-[30px] w-[30px]  object-contain"
+          />
         </div>
       </div>
     </div>
