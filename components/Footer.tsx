@@ -62,7 +62,7 @@ const Footer = () => {
   ];
 
   return (
-    <div className="max-w-7xl space-y-10  mx-auto">
+    <div className="max-w-7xl space-y-10  mt-8 mx-auto">
       <div className="relative p-32 mb-14 max-md:p-6 !text-white  w-full rounded-2xl ">
         <Image
           alt=""
@@ -103,7 +103,7 @@ const Footer = () => {
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grif-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:grid-cols-4">
         {servicesData.map((e, i) => (
           <m.div
             key={i}

@@ -5,9 +5,10 @@ import ProductsGrid from "@/components/ProductsGrid";
 import React from "react";
 import { Button } from "@/components/ui/button";
 
-import { PlusCircle, SearchX } from "lucide-react";
+import { PlusCircle, SearchX, ShoppingBag } from "lucide-react";
 
 import BillBoard from "@/components/BillBoard";
+import Heading from "@/components/Heading";
 interface Query {
   colorId?: string;
   sizeId?: string;
@@ -59,10 +60,15 @@ const page = async ({
           </SheetContent>
         </Sheet>
         {category.products.length > 0 && (
-          <ProductsGrid
-            items={category.products}
-            title="all prodcuts odf this category"
-          />
+          <>
+            <Heading
+              title={"all prodcuts of this category"}
+              icon={<ShoppingBag />}
+              color="#96e072"
+              description="check listed products"
+            />
+            <ProductsGrid items={category.products} />
+          </>
         )}
       </div>
       {category.products.length === 0 && (

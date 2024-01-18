@@ -19,34 +19,32 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useCart } from "@/hooks/store";
 import ModalProvider from "@/providers/modalProvider";
 import { formatedPrice } from "@/utils";
-import { Expand, ShoppingCartIcon } from "lucide-react";
+import { Expand, ShoppingBag, ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion as m } from "framer-motion";
+
 const ProductsGrid = ({
-  title,
   items,
 }: {
   items: product[];
-  title: string;
 }) => {
   const { addProducts } = useCart();
   return (
-    <div className="my-12 w-full">
-      <h2 className=" font-bold text-3xl my-6 ">{title} </h2>
-      <div className=" grid max-md:w-fit max-md:mx-auto gap-6 grid-cols-[repeat(auto-fill_,_minmax(350px_,1fr))] ">
+    <div className=" w-full">
+      <div className=" grid max-md:w-fit max-md:mx-auto mt-6 gap-6 grid-cols-[repeat(auto-fill_,_minmax(350px_,1fr))] ">
         {items.map((e, i) => (
           <m.div
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
-              delay: i * 0.3,
-              duration: 0.6,
+              delay: i * 0.15,
+              duration: 0.5,
               type: "spring",
               stiffness: 260,
               damping: 20,
             }}
-            initial={{ opacity: 0, y: 100 }}
+            initial={{ opacity: 0, y: 50 }}
           >
             <Card className="w-[350px] overflow-hidden">
               <CardContent className="h-[250px] group !p-6 rounded-xl overflow-hidden relative">
@@ -71,7 +69,7 @@ const ProductsGrid = ({
                               <CarouselItem key={el.id}>
                                 <Image
                                   alt={e.description}
-                                  className="object-cover max-h-[80dvh] rounded-xl !w-full "
+                                  className="object-cover max-h-[80dvh] h-fit rounded-xl !w-full "
                                   src={el.url}
                                   height={50}
                                   width={100}
