@@ -26,8 +26,8 @@ const BillBoard = ({
       ) : (
         <div
           style={{ color: billboard.labelColor }}
-          className="absolute z-20  w-full hover:backdrop-blur-0 
-  duration-500 transition-all xl:backdrop-blur-sm gap-1 h-full flexcenter  -translate-y-1/2  top-1/2 max-md:text-2xl font-bold text-5xl"
+          className="absolute z-20  w-full 
+  duration-500 transition-all  gap-1 h-full flexcenter  -translate-y-1/2  top-1/2 max-md:text-2xl font-bold text-5xl"
         >
           {labelWords.map((e, i) => (
             <m.p
