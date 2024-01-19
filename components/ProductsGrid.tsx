@@ -69,7 +69,7 @@ const ProductsGrid = ({
                               <CarouselItem key={el.id}>
                                 <Image
                                   alt={e.description}
-                                  className="object-cover max-h-[80dvh] h-fit rounded-xl !w-full "
+                                  className="object-cover max-h-[80dvh] h-f rounded-xl !w-full "
                                   src={el.url}
                                   height={50}
                                   width={100}

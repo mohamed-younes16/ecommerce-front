@@ -46,7 +46,7 @@ const MainNav = ({ categories }: { categories: category[] }) => {
                 <div
                   className={`absolute origin-left duration-75 group-hover:scale-x-100 bottom-0 left-0 scale-x-0 h-[4px] w-full
             bg-[#b7b7b772] z-20 ${
-              pathname == `/categories/${e.id}` && "!bg-cyan-400 !scale-100"
+              pathname == `/categories/${e.id}` && "max-lg:!bg-cyan-400 !scale-100"
             }`}
                 />
               </div>
@@ -55,20 +55,15 @@ const MainNav = ({ categories }: { categories: category[] }) => {
         </Sheet>
       </div>
 
-      {index !== null && (
-        <div
-          style={{ translate: `${80 * index + index * 10}px 0` }}
-          className={`absolute origin-left duration-150
-          bottom-0 left-0 z-10 h-[4px] w-[80px]
-            bg-cyan-400  `}
-        />
-      )}
+    
       <div className="flex max-lg:hidden">
         {categories.map((e, i) => (
           <div
             onClick={() => setindex(i)}
             key={e.name}
-            className="relative w-[80px] font-semibold  flexcenter group py-1  overflow-x-hidden "
+            className={`relative w-[80px] font-semibold  flexcenter group py-1  overflow-x-hidden  ${
+              pathname == `/categories/${e.id}` && "dark:text-cyan-400 text-cyan-600 "
+            }`}
           >
             <Link href={`/categories/${e.id}`}> {e.name} </Link>
             <div

@@ -18,8 +18,8 @@ const BillBoard = ({
         <Link
           style={{ color: billboard.labelColor }}
           href={`/categories/${billboard.categories[0].id}`}
-          className="absolute z-20  w-full hover:backdrop-blur-0 
-    duration-500 transition-all xl:backdrop-blur-sm h-full flexcenter  -translate-y-1/2  top-1/2 max-md:text-2xl font-bold text-5xl"
+          className="absolute z-20  w-full
+    duration-500 transition-all h-full flexcenter  -translate-y-1/2  top-1/2 max-md:text-2xl font-bold text-5xl"
         >
           {billboard.label}
         </Link>
