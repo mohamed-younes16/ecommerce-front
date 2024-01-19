@@ -25,7 +25,7 @@ export default async function Home() {
         
 
         <Heading icon={<ShoppingCart />} color="#8c71db" className="mt-6" description="all products" title="Products" />
-        <ProductsGrid items={products} title="ProductsList" />
+        <ProductsGrid items={products} />
       </div>
     </div>
   );
