@@ -30,6 +30,7 @@ export default async function RootLayout({
     
   "
           >
+            <Analytics/>
             <Toaster richColors position="top-center" />
             <NavBar />
             {children}
