@@ -117,7 +117,7 @@ const ManageCart = () => {
             <Heading
               color="green"
               icon={<ShoppingBasketIcon />}
-              description="mange your cart"
+              description="manage your cart"
               title="Cart Items"
             />
             <div className="flex gap-6 max-lg:flex-wrap">
