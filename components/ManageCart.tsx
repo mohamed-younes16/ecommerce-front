@@ -106,6 +106,7 @@ const ManageCart = () => {
           className="  !max-w-none w-[100dvw] z-[9999] xl:w-[80dvw]"
         >
           <SheetClose
+          asChild
             className="absolute top-4 right-4 z-30 "
             onClick={() => setSideBarOpen(false)}
           >

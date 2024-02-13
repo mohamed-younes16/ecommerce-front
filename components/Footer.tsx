@@ -129,7 +129,7 @@ const Footer = () => {
             />
             <div>
               <h2 className=" font-bold mb-1 text-xl">{e.title}</h2>
-              <h4>{e.desc}</h4>
+              <p>{e.desc}</p>
             </div>
           </m.div>
         ))}
@@ -140,6 +140,7 @@ const Footer = () => {
             <Link
               href={e.link}
               key={i}
+              aria-label={`link to my ${e.name}`}
               className="group relative p-2 rounded-full "
             >
               <div className="absolute  z-[2] inset-0 rounded-full bg-cyan-500 scale-0 transition-all group-hover:scale-100 "></div>

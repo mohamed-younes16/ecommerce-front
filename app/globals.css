@@ -9,7 +9,7 @@
   --element-height: calc(var(--lines-count) * var(--line-height));
 }
 
-p.desc {
+.desc {
   
   padding: 0;                              /* <------ optional */
   height: var(--element-height);           /* <------ optional */

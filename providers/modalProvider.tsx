@@ -1,10 +1,9 @@
 "use client"
-import { useRouter } from "next/navigation";
 import React, { ReactNode, useEffect, useState } from "react";
 
-const ModalProvider = ({ children }: { children: ReactNode}) => {
+const CliComp = ({ children }: { children: ReactNode}) => {
   const [isMounted, setIsMounted] = useState(false);
-const router = useRouter()
+
   useEffect(() => {
     setIsMounted(true);
 
@@ -13,4 +12,4 @@ const router = useRouter()
   return isMounted ? <>{children}</> : null;
 };
 
-export default ModalProvider;
+export default CliComp;

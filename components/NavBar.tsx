@@ -6,6 +6,7 @@ import { ModeToggle } from "./ui/themeButton";
 import ManageCart from "./ManageCart";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import CliComp from "@/providers/modalProvider";
 
 const NavBar = () => {
   const [categories, setCtagories] = useState(null);
@@ -33,7 +34,10 @@ const NavBar = () => {
             {categories && <MainNav categories={categories} />}
           </div>
           <div className="flexcenter gap-3 min-w-[180px]">
-            <ManageCart />
+            <CliComp>
+              <ManageCart />
+            </CliComp>
+
             <Button>
               <ModeToggle />
             </Button>

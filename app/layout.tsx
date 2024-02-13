@@ -1,5 +1,6 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
-import "@radix-ui/themes/styles.css";
+
+import { Analytics } from "@vercel/analytics/react";
 import { ReactNode } from "react";
 import "./globals.css";
 import { Toaster } from "sonner";
@@ -15,27 +16,27 @@ export default async function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en" className={`${font.className} `}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        storageKey="admin-theme"
-      >
-        <body
-          suppressHydrationWarning
-          className="  min-h-screen dark:bg-[url(/assets/magicdark.svg)] transition-all 
-        p-6 pb-0 bg-cover bg-no-repeat   bg-[url(/assets/light-bg.svg)] pt-[calc(100px_+_2rem)]  dark:bg-transparent bg-[#3e3e3efc]
-        
-      "
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          storageKey="admin-theme"
         >
-          <Toaster richColors position="top-center" />
-
-          <NavBar />
-
-          {children}
-          <Footer />
-        </body>
-      </ThemeProvider>
+          <div
+            suppressHydrationWarning
+            className="  min-h-screen dark:bg-[url(/assets/magicdark.svg)] transition-all 
+    p-6 pb-0 bg-cover bg-no-repeat bg-fixed   bg-[url(/assets/light-bg.svg)] pt-[calc(100px_+_2rem)]  dark:bg-transparent bg-[#3e3e3efc]
+    
+  "
+          >
+            <Toaster richColors position="top-center" />
+            <NavBar />
+            {children}
+            <Footer />
+          </div>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

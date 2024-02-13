@@ -19,22 +19,20 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useCart } from "@/hooks/store";
 import ModalProvider from "@/providers/modalProvider";
 import { formatedPrice } from "@/utils";
-import { Expand, ShoppingBag, ShoppingCartIcon } from "lucide-react";
+import { Expand, ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion as m } from "framer-motion";
+import CliComp from "@/providers/modalProvider";
 
-const ProductsGrid = ({
-  items,
-}: {
-  items: product[];
-}) => {
+const ProductsGrid = ({ items }: { items: product[] }) => {
   const { addProducts } = useCart();
   return (
     <div className=" w-full">
       <div className=" grid max-md:w-fit max-md:mx-auto mt-6 gap-6 grid-cols-[repeat(auto-fill_,_minmax(350px_,1fr))] ">
         {items.map((e, i) => (
           <m.div
+            key={e.id}
             viewport={{ once: true }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
@@ -66,10 +64,13 @@ const ProductsGrid = ({
                         <Carousel className="w-[90%] mx-auto">
                           <CarouselContent>
                             {e.images.map((el) => (
-                              <CarouselItem key={el.id}>
+                              <CarouselItem
+                                className="h-full  flexcenter  max-md:w-[80%] max-md:min-h-[45dvh] min-h-[70dvh]"
+                                key={el.id}
+                              >
                                 <Image
-                                  alt={e.description}
-                                  className="object-cover max-h-[80dvh] h-f rounded-xl !w-full "
+                                  alt={e.id}
+                                  className="object-contain  rounded-xl  h-full w-full "
                                   src={el.url}
                                   height={50}
                                   width={100}
@@ -94,68 +95,71 @@ const ProductsGrid = ({
                   </div>
                 </div>
                 <Image
-                  alt={e.description}
+                  alt={e.id}
                   className="object-contain rounded-xl !w-full !h-full"
                   src={e.images[0].url}
                   height={50}
                   width={100}
                 />
-              </CardContent>{" "}
-              <Link href={`/product/${e.id}`}>
-                {" "}
-                <CardHeader>
-                  <CardTitle>
-                    <m.p
-                      viewport={{ once: true }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{
-                        delay: i * 0.3 + 0.3,
-                        duration: 0.6,
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                      }}
-                      initial={{ opacity: 0, x: 100 }}
-                    >
-                      {" "}
-                      {e.name}
-                    </m.p>
-                  </CardTitle>
-                  <CardTitle className="!my-2">
-                    <m.p
-                      viewport={{ once: true }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{
-                        delay: i * 0.3 + 0.3,
-                        duration: 0.6,
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                      }}
-                      initial={{ opacity: 0, x: -100 }}
-                    >
-                      {formatedPrice(e.price)}{" "}
-                    </m.p>
-                  </CardTitle>
-                  <CardDescription>
-                    <m.p
-                      viewport={{ once: true }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{
-                        delay: i * 0.3 + 0.3,
-                        duration: 0.6,
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                      }}
-                      initial={{ opacity: 0, x: 100 }}
-                      className="desc"
-                    >
-                      {e.description}
-                    </m.p>
-                  </CardDescription>
-                </CardHeader>
-              </Link>
+              </CardContent>
+              <CliComp>
+                <Link href={`/product/${e.id}`}>
+                  {" "}
+                  <CardHeader>
+                    <CardTitle>
+                      <m.div
+                        viewport={{ once: true }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: i * 0.3 + 0.3,
+                          duration: 0.6,
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 20,
+                        }}
+                        initial={{ opacity: 0, x: 100 }}
+                      >
+                        {" "}
+                        {e.name}
+                      </m.div>
+                    </CardTitle>
+                    <CardTitle className="!my-2">
+                      <m.div
+                        viewport={{ once: true }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: i * 0.3 + 0.3,
+                          duration: 0.6,
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 20,
+                        }}
+                        initial={{ opacity: 0, x: -100 }}
+                      >
+                        {formatedPrice(e.price)}{" "}
+                      </m.div>
+                    </CardTitle>
+                    <CardDescription>
+                      <m.span
+                        viewport={{ once: true }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{
+                          delay: i * 0.3 + 0.3,
+                          duration: 0.6,
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 20,
+                        }}
+                        initial={{ opacity: 0, x: 100 }}
+                        className="desc"
+                      >
+                        {e.description}
+                      </m.span>
+                    </CardDescription>
+                  </CardHeader>
+                </Link>
+              </CliComp>
+
               <CardFooter className="flex justify-between">
                 <Link href={`/product/${e.id}`}>
                   {" "}

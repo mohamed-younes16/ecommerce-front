@@ -20,7 +20,7 @@ const page = async ({
 
   return (
     <div className=" my-16">
-      <div className="flex gap-10 max-lg:flex-wrap ">
+      <div className="flex gap-10 max-lg:flex-wrap  max-lg:justify-center">
         <ProductCarousel productImages={product.images} />
         <div className=" space-y-7 max-w-lg">
           <h2 className="text-4xl font-bold">{product.name} </h2>

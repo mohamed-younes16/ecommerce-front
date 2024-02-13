@@ -12,16 +12,14 @@ import React from "react";
 const ProductCarousel = ({ productImages }: { productImages: ImageType[] }) => {
   const [api, setApi] = React.useState<any>();
   const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
+
 
   React.useEffect(() => {
     if (!api) {
       return;
     }
-
-    setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
-    console.log();
+
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });

@@ -42,7 +42,7 @@ export const getAllProducts = async (query: Query) => {
     url: `${apiLink}/products`,
     query: { ...query },
   },{skipNull:true});
-  console.log(url);
+
   return await (
     await fetch(url, {
       
@@ -66,7 +66,7 @@ export const getCategory = async (query: Query) => {
     url: `${apiLink}/categories/${query.categoryId}`,
     query: { ...query },
   },{skipNull:true});
-  console.log(url)
+
   return await (
     await fetch(url, {
       cache:"no-cache" 
