@@ -68,39 +68,40 @@ const Footer = () => {
           alt=""
           fill
           src={"/assets/settler.jpg"}
-          className=" rounded-2xl object-cover -z-10"
+          className=" rounded-2xl object-cover "
         />
+        <div className="z-10 relative">
+          <div className="relative space-y-4  mb-16 ">
+            <div className="flex text-blue-600 items-center gap-5">
+              <div className="h-10 w-10 flexcenter rounded-full bg-blue-600">
+                <MailOpenIcon className="h-6 w-6  !text-white " />
+              </div>
 
-        <div className="relative space-y-4  mb-16 z-10">
-          <div className="flex text-blue-600 items-center gap-5">
-            <div className="h-10 w-10 flexcenter rounded-full bg-blue-600">
-              <MailOpenIcon className="h-6 w-6  !text-white " />
+              <div className="font-bold text-xl">News Letter</div>
             </div>
-
-            <div className="font-bold text-xl">News Letter</div>
+            <div className="font-bold text-5xl max-sm:text-3xl">
+              Get monthly Updates
+            </div>
           </div>
-          <div className="font-bold text-5xl max-sm:text-3xl">
-            Get monthly Updates
+          <div className="flexcenter max-sm:justify-start max-sm:flex-wrap  max-w-2xl  gap-6">
+            <div className="w-full gap-4 h-full pl-8 rounded-xl bg-background  flexcenter">
+              <Image
+                className=" h-[25px] w-[25px] object-cover"
+                alt=""
+                src={"/assets/send-mail.png"}
+                height={20}
+                width={20}
+              />
+              <Input
+                placeholder="example@domain.com"
+                type="text"
+                className="  !border-none text-foreground !outline-none h-[60px]  !ring-0 !shadow-none"
+              />
+            </div>
+            <Button className="h-[60px] shadow-xl rounded-xl px-8 hover:scale-110 max-md:text-lg active:scale-95 !bg-opacity-100 transition-all text-2xl">
+              Subscribe
+            </Button>
           </div>
-        </div>
-        <div className="flexcenter max-sm:justify-start max-sm:flex-wrap  max-w-2xl  gap-6">
-          <div className="w-full gap-4 h-full pl-8 rounded-xl bg-background  flexcenter">
-            <Image
-              className=" h-[25px] w-[25px] object-cover"
-              alt=""
-              src={"/assets/send-mail.png"}
-              height={20}
-              width={20}
-            />
-            <Input
-              placeholder="example@domain.com"
-              type="text"
-              className="  !border-none text-foreground !outline-none h-[60px]  !ring-0 !shadow-none"
-            />
-          </div>
-          <Button className="h-[60px] rounded-xl px-8 hover:scale-110 max-md:text-lg active:scale-95 !bg-opacity-100 transition-all text-2xl">
-            Subscribe
-          </Button>
         </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:grid-cols-4">
