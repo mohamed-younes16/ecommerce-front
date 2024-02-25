@@ -13,11 +13,15 @@ type Store = {
   SideBarOpen: boolean;
   setSideBarOpen: (v: boolean) => void;
   setquantity: (productId: string, v: 1 | -1) => void;
+  isLoginModalOpen: boolean;
+  setisLoginModalOpen: (v: boolean) => void;
 };
 
 export const useCart = create<Store>()(
   persist(
     (set) => ({
+      isLoginModalOpen: false,
+      setisLoginModalOpen: (v: boolean) => set(() => ({ isLoginModalOpen: v })),
       SideBarOpen: false,
       setSideBarOpen: (v: boolean) => set(() => ({ SideBarOpen: v })),
       products: [],

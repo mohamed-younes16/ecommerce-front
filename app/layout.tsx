@@ -7,6 +7,8 @@ import { Toaster } from "sonner";
 import { Urbanist } from "next/font/google";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
+import getCurrentUser from "@/actions/getCurrentUser";
+
 const font = Urbanist({ subsets: ["latin"] });
 export const apiLink = process.env.NEXT_PUBLIC_API_URL;
 export default async function RootLayout({
@@ -14,6 +16,8 @@ export default async function RootLayout({
 }: {
   children: ReactNode;
 }) {
+  const user = await getCurrentUser();
+
   return (
     <html suppressHydrationWarning lang="en" className={`${font.className} `}>
       <body>
@@ -30,11 +34,10 @@ export default async function RootLayout({
     
   "
           >
-            <Analytics/>
+            <Analytics />
             <Toaster richColors position="top-center" />
-            <NavBar />
+            <NavBar userData={user} />
             {children}
-            <Footer />
           </div>
         </ThemeProvider>
       </body>

@@ -113,3 +113,19 @@ interface orderItem {
   Product: product;
   
 }
+interface UserFetched   {
+  id: string;
+  name: string | null;
+  email: string | null;
+  username: string | null;
+  imageUrl: string | null;
+  bio: string | null;
+  onboarded: boolean;
+  createdAt: Date;
+} 
+
+interface AuthenticationModalType {
+  open: "login" | "register" | "";
+  setOpen: (v: "login" | "register" | "") => void;
+}
+

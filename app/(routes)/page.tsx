@@ -16,16 +16,20 @@ export default async function Home() {
   const targetbillBoard: billBoard =
     filteredBillboards[Math.floor(Math.random() * filteredBillboards.length)];
   const products = await getAllProducts({ isFeatured: true });
-
   return (
     <div className="min-h-screen">
-      <BillBoard link={true} billboard={targetbillBoard} />
-      <CatgoriesCarousel categories={categories}/> 
-      <div className="min-h-screen max-w-7xl mx-auto  ">
-        
+      {targetbillBoard && <BillBoard link={true} billboard={targetbillBoard} />}
 
-        <Heading icon={<ShoppingCart />} color="#8c71db" className="mt-6" description="all products" title="Products" />
-        <ProductsGrid items={products} />
+      {categories && <CatgoriesCarousel categories={categories} />}
+      <div className="min-h-screen max-w-7xl mx-auto  ">
+        <Heading
+          icon={<ShoppingCart />}
+          color="#8c71db"
+          className="mt-6"
+          description="all products"
+          title="Products"
+        />
+        {products && <ProductsGrid items={products} />}
       </div>
     </div>
   );

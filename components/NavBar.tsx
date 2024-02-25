@@ -8,7 +8,11 @@ import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import CliComp from "@/providers/modalProvider";
 
-const NavBar = () => {
+import { useMediaQuery } from "usehooks-ts";
+import UserHandler from "./UserHandler";
+
+const NavBar = ({ userData }: { userData: UserFetched | null }) => {
+  const matches: boolean = useMediaQuery("(min-width: 768px)") || false;
   const [categories, setCtagories] = useState(null);
   useEffect(() => {
     (async () => {
@@ -29,16 +33,18 @@ const NavBar = () => {
         <Link className="basis-1/3" href="/">
           <h2 className="font-bold text-3xl"> Store</h2>
         </Link>
-        <div className="flex gap-[0.25rem] max-lg:flex-row-reverse max-lg:justify-start items-center w-full lg:justify-between">
-          <div className="flexcenter  max-lg:justify-end w-full max-lg:w-[56px] gap-6 ">
-            {categories && <MainNav categories={categories} />}
+        <div className="flex gap-[1.25rem] max-lg:flex-row-reverse max-lg:justify-start items-center w-full lg:justify-between">
+          <div className="flexcenter  max-lg:justify-end  lg:flex-1 max-lg:w-[56px] gap-6 ">
+            {!matches && (
+              <MainNav categories={categories} userData={userData} />
+            )}
           </div>
           <div className="flexcenter gap-3 min-w-[180px]">
             <CliComp>
               <ManageCart />
             </CliComp>
-
-            <Button>
+            {matches && <UserHandler userData={userData} />}
+            <Button className="max-md:hidden">
               <ModeToggle />
             </Button>
           </div>

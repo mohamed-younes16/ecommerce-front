@@ -1,7 +1,6 @@
 "use client";
 import { motion as m } from "framer-motion";
 
-import Image from "next/image";
 import Link from "next/link";
 
 const BillBoard = ({
@@ -11,13 +10,13 @@ const BillBoard = ({
   billboard: billBoard;
   link: boolean;
 }) => {
-  const labelWords: string[] = billboard.label.split("");
+  const labelWords: string[] = billboard?.label?.split("");
   return (
     <div className=" max-md:h-[200px] bg-cover bg-[#fdf6f2]  max-w-[95rem] overflow-hidden relative mx-auto rounded-xl h-[500px]">
       {link ? (
         <Link
           style={{ color: billboard.labelColor }}
-          href={`/categories/${billboard.categories[0].id}`}
+          href={`/categories/${billboard?.categories[0]?.id}`}
           className="absolute z-20  w-full
     duration-500 transition-all h-full flexcenter  -translate-y-1/2  top-1/2 max-md:text-2xl font-bold text-5xl"
         >
