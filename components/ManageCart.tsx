@@ -16,13 +16,7 @@ import {
   X,
 } from "lucide-react";
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { formatedPrice } from "@/utils";
 import { useEffect, useState } from "react";
 import Heading from "./Heading";
@@ -32,8 +26,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
 import { toast } from "sonner";
 import Link from "next/link";
+import UserLoginAlert from "./UserLoginAlert";
 
-const ManageCart = () => {
+const ManageCart = ({ userData }: { userData: UserFetched | null }) => {
   const {
     products,
     deleteProduct,
@@ -61,6 +56,7 @@ const ManageCart = () => {
       setTimeout(() => {
         delteAllProducts();
         setSideBarOpen(false);
+        router.push("/orders");
       }, 500);
 
       const current = qs.parse(searchParams.toString());
@@ -106,7 +102,7 @@ const ManageCart = () => {
           className="  !max-w-none w-[100dvw] z-[9999] xl:w-[80dvw]"
         >
           <SheetClose
-          asChild
+            asChild
             className="absolute top-4 right-4 z-30 "
             onClick={() => setSideBarOpen(false)}
           >
@@ -191,55 +187,62 @@ const ManageCart = () => {
 
               {products.length > 0 && (
                 <div className="space-y-6 max-lg:space-y-2 max-lg:fixed max-lg:left-0 p-6 z-40 max-lg:bottom-0 max-lg:bg-background text-2xl font-bold max-lg:w-full  lg:basis-1/3">
-                  <h3>Order Sammuary</h3>
-                  <div className="flex items-center justify-between ">
-                    Order Total Price <p>{formatedPrice(total() || 0)}</p>
-                  </div>
-
-                  {products.length > 0 && (
+                  {userData ? (
                     <>
                       {" "}
-                      <Button
-                        disabled={fetching}
-                        onClick={async () => {
-                          setIsFetching(true);
-                          if (products.length > 0) {
-                            const res = await axios.post(
-                              `${apiLink}/checkout`,
-                              {
-                                productsData: products.map(
-                                  (e: productType) => ({
-                                    productId: e.product.id,
-                                    quantity: e.quantity,
-                                  })
-                                ),
+                      <h3>Order Sammuary</h3>
+                      <div className="flex items-center justify-between ">
+                        Order Total Price <p>{formatedPrice(total() || 0)}</p>
+                      </div>{" "}
+                      {products.length > 0 && (
+                        <>
+                          {" "}
+                          <Button
+                            disabled={fetching}
+                            onClick={async () => {
+                              setIsFetching(true);
+                              if (products.length > 0) {
+                                const res = await axios.post(
+                                  `${apiLink}/checkout`,
+                                  {
+                                    productsData: products.map(
+                                      (e: productType) => ({
+                                        productId: e.product.id,
+                                        quantity: e.quantity,
+                                      })
+                                    ),
+                                    ownerId: userData?.id,
+                                  }
+                                );
+                                setIsFetching(false);
+                                window.location = res.data.url;
                               }
-                            );
-                            setIsFetching(false);
-                            window.location = res.data.url;
-                          }
-                          setIsFetching(false);
-                        }}
-                        className="!w-full  mx-auto max-lg:max-w-md  max-lg:text-lg max-lg:py-2  py-6 relative flexcenter   gap-4 text-2xl rounded-3xl "
-                      >
-                        <Loader2
-                          className={`animate-spin  transition-all left-[70px] !h-[20px] absolute  w-0  ${
-                            fetching && "!w-[20px] "
-                          } `}
-                        />
-                        Checkout
-                      </Button>
-                      <Button
-                        variant={"destructive"}
-                        disabled={fetching}
-                        onClick={() => {
-                          delteAllProducts();
-                        }}
-                        className="!w-full mx-auto max-lg:max-w-md py-6 relative flexcenter max-lg:text-lg max-lg:py-2    gap-4 text-2xl rounded-3xl "
-                      >
-                        Delete All products
-                      </Button>
+                              setIsFetching(false);
+                            }}
+                            className="!w-full  mx-auto max-lg:max-w-md  max-lg:text-lg max-lg:py-2  py-6 relative flexcenter   gap-4 text-2xl rounded-3xl "
+                          >
+                            <Loader2
+                              className={`animate-spin  transition-all left-[70px] !h-[20px] absolute  w-0  ${
+                                fetching && "!w-[20px] "
+                              } `}
+                            />
+                            Checkout
+                          </Button>
+                          <Button
+                            variant={"destructive"}
+                            disabled={fetching}
+                            onClick={() => {
+                              delteAllProducts();
+                            }}
+                            className="!w-full mx-auto max-lg:max-w-md py-6 relative flexcenter max-lg:text-lg max-lg:py-2    gap-4 text-2xl rounded-3xl "
+                          >
+                            Delete All products
+                          </Button>
+                        </>
+                      )}
                     </>
+                  ) : (
+                    <UserLoginAlert />
                   )}
                 </div>
               )}

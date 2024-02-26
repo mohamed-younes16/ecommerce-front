@@ -5,13 +5,12 @@ import MenuItem from "../navbar/MenuItem";
 import RegisterForm from "../forms/RegisterForm";
 
 const RegisterModal = ({ open, setOpen }: AuthenticationModalType) => {
-
   return (
     <Dialog
       open={open === "register"}
       onOpenChange={(e) => {
         e && setOpen("register");
-        !e && setOpen("");
+        !e && setOpen(null);
       }}
     >
       <DialogTrigger className=" text-start w-full">
@@ -24,8 +23,7 @@ const RegisterModal = ({ open, setOpen }: AuthenticationModalType) => {
         </h1>
         <div className="text-foreground/80">Create an Account</div>
 
-
-                <RegisterForm type="register" />
+        <RegisterForm type="register" />
         <div className="flex gap-2">
           <p>Already have an account?</p>
           <div

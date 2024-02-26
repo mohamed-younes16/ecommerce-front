@@ -4,13 +4,20 @@ import MenuItem from "../navbar/MenuItem";
 import { useCart } from "@/hooks/store";
 import RegisterForm from "../forms/RegisterForm";
 const LoginModal = ({ setOpen, open }: AuthenticationModalType) => {
-  const { isLoginModalOpen } = useCart();
+  const { isLoginModalOpen, setisLoginModalOpen } = useCart();
   return (
     <Dialog
       open={open === "login" || isLoginModalOpen}
       onOpenChange={(e) => {
-        e && setOpen("login");
-        !e && setOpen("");
+        console.log(e);
+        if (e) {
+          setOpen("login");
+          setisLoginModalOpen(true);
+        }
+        if (!e) {
+          setOpen(null);
+          setisLoginModalOpen(false);
+        }
       }}
     >
       <DialogTrigger className=" text-start w-full">

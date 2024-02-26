@@ -1,6 +1,6 @@
 import "@uploadthing/react/styles.css";
 
-import { HomeIcon, LucideLogOut, ShieldAlert } from "lucide-react";
+import { HomeIcon, LucideLogOut } from "lucide-react";
 import Link from "next/link";
 import {
   Tooltip,
@@ -14,13 +14,12 @@ import TooltipComp from "@/components/ui/TooltipComp";
 
 import SignOutButton from "@/components/inputs/SignOutButton";
 import getCurrentUser from "@/actions/getCurrentUser";
-
-import { Button } from "@/components/ui/button";
 import CliComp from "@/providers/modalProvider";
+import UserLoginAlert from "@/components/UserLoginAlert";
 
 
 
-const Heading = ({
+export const Heading = ({
   title="",
   description="",
 }: {
@@ -79,16 +78,7 @@ const Page = async () => {
           </div>
         </div>
       ) : (
-        <div className="flexcenter h-[50dvh] flex-col text-center">
-          <Heading
-            title="Not Logged In "
-            description="try Logging in to  access content."
-          />
-          <ShieldAlert size={40} className=" mt-6" />
-          <Button className="mt-8" variant={"outline"}>
-            <Link href={"/?redirected=true"}>Go to Login</Link>
-          </Button>
-        </div>
+        <UserLoginAlert/>
       )}
     </>
   );

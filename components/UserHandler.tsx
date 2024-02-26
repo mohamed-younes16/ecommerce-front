@@ -9,25 +9,24 @@ import Image from "next/image";
 import LoginModal from "./modals/LoginModal";
 import RegisterModal from "./modals/RegisterModal";
 import MenuItem from "./navbar/MenuItem";
-import { LucideLogOut, Menu, UserIcon } from "lucide-react";
+import { Album, LucideLogOut, Menu, UserIcon } from "lucide-react";
 import { Separator } from "./ui/separator";
 import SignOutButton from "./inputs/SignOutButton";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ModeToggle } from "./ui/themeButton";
 import ImageContainer from "./ImageContainer";
+import CliComp from "@/providers/modalProvider";
 
 const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
   const searchParams = useSearchParams();
-  const [open, setOpen] = useState<"login" | "register" | "">(
-    searchParams.get("redirected") === "true" ? "login" : ""
+  const [open, setOpen] = useState<"login" | "register" | null>(
+    searchParams.get("redirected") === "true" ? "login" : null
   );
   const [popopen, setpopopen] = useState(false);
-  const { setisLoginModalOpen } = useCart();
   useEffect(() => {
     const redirected = searchParams.get("redirected") === "true";
     setpopopen(redirected && userData === null);
-    setisLoginModalOpen(redirected && userData === null);
   }, [searchParams]);
 
   return (
@@ -67,12 +66,14 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
       </PopoverTrigger>
       <PopoverContent className="-translate-x-4  p-2">
         {!userData ? (
-          <>
+          <CliComp>
             <LoginModal setOpen={setOpen} open={open} />
+            <Separator className="my-2" />
             <RegisterModal setOpen={setOpen} open={open} />
-          </>
+          </CliComp>
         ) : (
           <>
+            <Separator className="my-2" />
             <MenuItem onclick={() => {}}>
               <Link className="w-full flex gap-2" href={"/profile"}>
                 <UserIcon /> Profile
@@ -80,7 +81,7 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
             </MenuItem>
           </>
         )}
-        <Separator className={`my-4 ${!userData && "hidden"}`} />
+        <Separator className={`my-2 md:hidden`} />
         <MenuItem className="md:hidden">
           <div className="flex gap-2 items-center">
             <ModeToggle>
@@ -88,14 +89,24 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
             </ModeToggle>
           </div>
         </MenuItem>
+        <Separator className={`my-2 ${!userData && "hidden"}`} />
+
         {userData && (
-          <MenuItem className=" flexcenter text-red-600" onclick={() => {}}>
-            <SignOutButton>
-              <div className="flex w-full h-full gap-1 items-center">
-                <LucideLogOut className="h-6 w-6 " /> Logout
-              </div>
-            </SignOutButton>
-          </MenuItem>
+          <>
+            <MenuItem onclick={() => {}}>
+              <Link className="w-full flex gap-2" href={"/orders"}>
+                <Album /> Orders
+              </Link>
+            </MenuItem>
+            <Separator className="my-2" />
+            <MenuItem className=" flexcenter text-red-600" onclick={() => {}}>
+              <SignOutButton>
+                <div className="flex w-full h-full gap-1 items-center">
+                  <LucideLogOut className="h-6 w-6 " /> Logout
+                </div>
+              </SignOutButton>
+            </MenuItem>
+          </>
         )}
       </PopoverContent>
     </Popover>

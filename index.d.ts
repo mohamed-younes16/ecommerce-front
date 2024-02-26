@@ -125,7 +125,7 @@ interface UserFetched   {
 } 
 
 interface AuthenticationModalType {
-  open: "login" | "register" | "";
-  setOpen: (v: "login" | "register" | "") => void;
+  open: "login" | "register" | null;
+  setOpen: (v: "login" | "register" | null) => void;
 }
 

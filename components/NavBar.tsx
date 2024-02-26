@@ -34,16 +34,19 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
           <h2 className="font-bold text-3xl"> Store</h2>
         </Link>
         <div className="flex gap-[1.25rem] max-lg:flex-row-reverse max-lg:justify-start items-center w-full lg:justify-between">
-          <div className="flexcenter  max-lg:justify-end  lg:flex-1 max-lg:w-[56px] gap-6 ">
+          <div className="flexcenter  max-md:justify-end  max-md:w-[56px] gap-6 ">
             {!matches && (
               <MainNav categories={categories} userData={userData} />
             )}
           </div>
-          <div className="flexcenter gap-3 min-w-[180px]">
+          <div className="flexcenter gap-3 md:min-w-[250px]">
             <CliComp>
-              <ManageCart />
+              <ManageCart userData={userData} />
             </CliComp>
-            {matches && <UserHandler userData={userData} />}
+            <div className="md:min-w-[90px] max-md:hidden">
+              {matches && <UserHandler userData={userData} />}
+            </div>
+
             <Button className="max-md:hidden">
               <ModeToggle />
             </Button>

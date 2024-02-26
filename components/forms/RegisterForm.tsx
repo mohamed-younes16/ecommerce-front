@@ -26,7 +26,7 @@ import LoginButton from "../navbar/LoginButton";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 const RegisterForm = ({ type }: { type: "login" | "register" }) => {
-  const router = useRouter()
+  const router = useRouter();
   const defaultValues =
     type == "register"
       ? {
@@ -94,8 +94,10 @@ const RegisterForm = ({ type }: { type: "login" | "register" }) => {
         signIn("credentials", { redirect: false, ...data })
           .then((e) => {
             console.log(e);
-            e?.ok ? toast.success("logged In successfully ") : toast.error("error happend , try again .");
-         
+            if (e?.ok) {
+              toast.success("logged In successfully ");
+              window.location.reload();
+            } else toast.error("error happend , try again .");
           })
           .catch((e) => {
             console.log(e);
@@ -104,7 +106,7 @@ const RegisterForm = ({ type }: { type: "login" | "register" }) => {
             });
           });
       }
-      router.refresh()
+      router.refresh();
       toast.dismiss();
     } catch (error) {
       console.log(error);
@@ -210,7 +212,9 @@ const RegisterForm = ({ type }: { type: "login" | "register" }) => {
             <div className="flex items-center gap-6 justify-end">
               <Button
                 type="submit"
-                disabled={form.formState.isSubmitting}
+                disabled={
+                  form.formState.isSubmitting || !form.formState.isValid
+                }
                 className={`${
                   form.formState.isSubmitting
                     ? " animate-bounce bg-zinc-500"

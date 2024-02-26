@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Search from "./Search";
-import { currentUserDb } from "@/actions";
 import Categories from "./Categories";
 import Link from "next/link";
 import {

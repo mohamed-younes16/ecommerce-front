@@ -35,16 +35,17 @@ const MainNav = ({
             </Button>
           </SheetTrigger>
           <SheetContent className="p-3 justify-between   flex flex-col items-start  ">
+            <Link href="/">
+              <h2 className="font-bold text-3xl mb-3"> Store</h2>
+            </Link>
             <div className=" flex-1">
-              <SheetHeader>
+              <SheetHeader className="mb-4">
                 <SheetTitle>Check Some Categories</SheetTitle>
                 <SheetDescription>
                   List Of Categories In The Store
                 </SheetDescription>
               </SheetHeader>
-              <Link href="/">
-                <h2 className="font-bold text-3xl"> Store</h2>
-              </Link>
+
               {categories?.map((e, i) => (
                 <div
                   key={e.name}
@@ -68,7 +69,7 @@ const MainNav = ({
         </Sheet>
       </div>
 
-      <div className="flex max-lg:hidden">
+      <div className="flex max-lg:!hidden">
         {categories?.map((e, i) => (
           <div
             key={e.name}
