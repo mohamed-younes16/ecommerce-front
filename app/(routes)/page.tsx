@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import { getAllProducts, getAllcategories, getBillBoards } from "@/actions";
 import Heading from "@/components/Heading";
 import ProductsGrid from "@/components/ProductsGrid";
