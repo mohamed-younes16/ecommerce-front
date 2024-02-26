@@ -151,7 +151,9 @@ html.lenis {
 html.lenis {
   height: auto;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .lenis.lenis-smooth {
   scroll-behavior: auto;
 }
