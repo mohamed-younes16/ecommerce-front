@@ -36,7 +36,7 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
           <Link className="basis-1/3 " href="/">
             <h2 className="font-bold text-3xl"> Store</h2>
           </Link>{" "}
-          <Link className="h-[50px] w-[50px] relative " href="/">
+          <Link className="h-[45px] w-[45px] relative " href="/">
             <Image
               loading="eager"
               alt="logo"
