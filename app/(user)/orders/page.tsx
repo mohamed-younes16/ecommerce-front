@@ -35,7 +35,7 @@ const page = async () => {
   };
 
   const formattedorders: orderColumn[] = orders.map((e) => ({
-    products: e.items.map((e) => e.product.name).join(" "),
+    products: e.items.map((e) => e.product.name).join(" , "),
 
     id: e.id,
     createdAt: format(e.createdAt, "MMMM do , yyyy"),

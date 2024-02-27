@@ -25,12 +25,12 @@ const LoginModal = ({ setOpen, open }: AuthenticationModalType) => {
       </DialogTrigger>
       <DialogContent className=" max-sm:px-4">
         <div className="flexcenter mb-6 font-semibold text-xl">Login</div>
-        <h1 className="text-3xl max-md:text-xl font-bold">login to Airbnb</h1>
+        <h1 className="text-3xl max-md:text-xl font-bold">login to Store</h1>
         <div className="text-foreground/80">login to Account</div>
 
         <RegisterForm type="login" />
         <div className="flex gap-2">
-          <p>New to AirBnb create an account!</p>
+          <p>New to Store create an account!</p>
           <div
             className="text-main cursor-pointer "
             onClick={() => setOpen("register")}

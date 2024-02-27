@@ -25,7 +25,7 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
   return (
     <>
       <div
-        className="z-50 overflow-x- overflow-y-visible fixed
+        className="z-30 overflow-x- overflow-y-visible fixed
         h-[80px] shadow-2xl dark:bg-zinc-700 !bg-opacity-50
         bg-zinc-200
         hover:shadow-[#898989c3] transition-all    w-[94%]  mx-auto left-[3%] rounded-lg !top-[10px] p-4  sm:hidden
@@ -48,14 +48,14 @@ const NavBar = ({ userData }: { userData: UserFetched | null }) => {
         </div>
       </div>
       <div
-        className="z-50 overflow-x- overflow-y-visible max-sm:bottom-0 !fixed
+        className="z-30 overflow-x- overflow-y-visible max-sm:bottom-0 !fixed
         h-[100px] shadow-2xl dark:bg-zinc-700 !bg-opacity-50
         bg-zinc-200
         hover:shadow-[#898989c3] transition-all w-full max-sm:shadow-inner   sm:w-[94%] left-0 mx-auto sm:left-[3%] rounded-lg sm:top-[10px] p-4 
     backdrop-blur-md  "
       >
         <div className="flex h-full  max-sm:!justify-center  justify-between items-center">
-          <Link className="h-[50px] w-[50px] relative " href="/">
+          <Link className="h-[45px] w-[45px] relative " href="/">
             <Image
               loading="eager"
               alt="logo"

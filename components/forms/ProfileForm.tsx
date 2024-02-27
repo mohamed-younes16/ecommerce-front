@@ -28,10 +28,9 @@ import axios from "axios";
 
 import { X } from "lucide-react";
 
-import { FetchedUser } from "@/index";
 import { useEffect, useState } from "react";
 
-const ProfileForm = ({ userData }: { userData: FetchedUser | null }) => {
+const ProfileForm = ({ userData }: { userData: UserFetched | null }) => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof SetupSchema>>({
@@ -83,7 +82,7 @@ const ProfileForm = ({ userData }: { userData: FetchedUser | null }) => {
               {field.value ? (
                 <FormLabel
                   className=" mr-8 relative 
-             w-[250px] flex justify-center items-center m-0 !h-[250px] 
+             w-[250px] flex justify-center items-center max-md:h-36 max-md:w-36 m-0 h-[250px] 
             bg-zinc-900 rounded-full flexcenter "
                 >
                   {field?.value ? (
@@ -91,7 +90,7 @@ const ProfileForm = ({ userData }: { userData: FetchedUser | null }) => {
                       <X
                         onClick={() => field.onChange("")}
                         className="absolute cursor-pointer transition-all  
-                      hover:scale-105 bg-red-500 top-2 right-2 
+                      hover:scale-105 bg-red-500 top-2 max-md:top-0 max-md:right-0 right-2 
                       rounded-full p-2 h-10 w-10 z-50"
                       ></X>
                       <Image

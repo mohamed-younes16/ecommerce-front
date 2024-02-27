@@ -27,8 +27,12 @@ export const columns: ColumnDef<orderColumn>[] = [
     header: "image",
     cell: ({ row }) => {
       return (
-        <div className="h-[150px] w-[150px] rounded-xl overflow-hidden">
-          <ImageContainer src={row.original.imageUrl} />;
+        <div className="h-[150px] max-md:w-[100px] max-md:h-[100px] w-[150px] rounded-xl overflow-hidden">
+          <ImageContainer
+            className="object-contain"
+            src={row.original.imageUrl}
+          />
+          ;
         </div>
       );
     },
@@ -44,7 +48,24 @@ export const columns: ColumnDef<orderColumn>[] = [
   },
   {
     accessorKey: "createdAt",
-    header: "Created at",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          order Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      return (
+        <div className="font-bold whitespace-nowrap">
+          {row.original.createdAt}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "totalPrice",

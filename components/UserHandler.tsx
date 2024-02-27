@@ -73,7 +73,7 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
           </CliComp>
         ) : (
           <>
-            <Separator className="my-2" />
+            
             <MenuItem onclick={() => {}}>
               <Link className="w-full flex gap-2" href={"/profile"}>
                 <UserIcon /> Profile
@@ -81,7 +81,7 @@ const UserHandler = ({ userData }: { userData: UserFetched | null }) => {
             </MenuItem>
           </>
         )}
-        <Separator className={`my-2 md:hidden`} />
+        <Separator className={`my-2 md:hidden  ${!userData && "hidden"} `} />
         <MenuItem className="md:hidden">
           <div className="flex gap-2 items-center">
             <ModeToggle>

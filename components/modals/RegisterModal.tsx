@@ -18,9 +18,7 @@ const RegisterModal = ({ open, setOpen }: AuthenticationModalType) => {
       </DialogTrigger>
       <DialogContent>
         <div className="flexcenter mb-6 font-semibold text-xl">Register</div>
-        <h1 className="text-3xl max-md:text-xl font-bold">
-          Register to Airbnb
-        </h1>
+        <h1 className="text-3xl max-md:text-xl font-bold">Register to Store</h1>
         <div className="text-foreground/80">Create an Account</div>
 
         <RegisterForm type="register" />

@@ -42,7 +42,7 @@ const Page = async () => {
     <>
       {CurrentUserData ? (
         <div
-          className="fixed inset-0  flexcenter left-0 top-0  text-black  
+          className="fixed inset-0   flexcenter left-0 top-0  text-black  
     dark:text-white
     min-h-screen dark:bg-[url(/assets/magicdark.svg)] transition-all 
     bg-cover"
